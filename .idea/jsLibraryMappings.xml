@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JavaScriptLibraryMappings">
+    <excludedPredefinedLibrary name="DongMenu/src/main/java/com/example/dongmenu/frontend/my-menu-app/node_modules" />
+  </component>
+</project>
