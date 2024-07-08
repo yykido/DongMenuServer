@@ -1,17 +1,18 @@
 package com.example.dongmenu.backend.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "product")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long owner;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User seller;
 
     private String name;
 
@@ -41,11 +42,11 @@ public class Product {
         this.price = price;
     }
 
-    public Long getOwner() {
-        return owner;
+    public User getSeller() {
+        return seller;
     }
 
-    public void setOwner(Long owner) {
-        this.owner = owner;
+    public void setSeller(User seller) {
+        this.seller = seller;
     }
 }

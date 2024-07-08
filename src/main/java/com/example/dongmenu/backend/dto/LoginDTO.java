@@ -1,4 +1,4 @@
-package com.example.dongmenu.backend.model;
+package com.example.dongmenu.backend.dto;
 
 public class LoginDTO {
     private String username;

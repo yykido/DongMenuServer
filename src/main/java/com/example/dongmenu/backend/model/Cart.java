@@ -1,11 +1,10 @@
 package com.example.dongmenu.backend.model;
 
 import jakarta.persistence.*;
-import java.util.Date;
 
 @Entity
-@Table(name = "orders")
-public class Order {
+@Table(name = "cart")
+public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -19,8 +18,6 @@ public class Order {
     private Product product;
 
     private int quantity;
-    private Date orderDate;
-    // Other fields and getters/setters
 
     public Long getId() {
         return id;
@@ -52,13 +49,5 @@ public class Order {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
-    }
-
-    public Date getOrderDate() {
-        return orderDate;
-    }
-
-    public void setOrderDate(Date orderDate) {
-        this.orderDate = orderDate;
     }
 }

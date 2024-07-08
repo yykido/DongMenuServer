@@ -1,7 +1,10 @@
 package com.example.dongmenu.backend.controller;
 
+import com.example.dongmenu.backend.dto.ProductDTO;
 import com.example.dongmenu.backend.model.Product;
+import com.example.dongmenu.backend.model.User;
 import com.example.dongmenu.backend.repository.ProductRepository;
+import com.example.dongmenu.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +14,9 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/products")
 public class ProductController {
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
     private ProductRepository productRepository;
@@ -26,7 +32,15 @@ public class ProductController {
     }
 
     @PostMapping
-    public Product createProduct(@RequestBody Product product) {
+    public Product createProduct(@RequestBody ProductDTO productDTO) {
+
+        User user = userRepository.findById(productDTO.getUser())
+                .orElseThrow(() -> new RuntimeException("Product not found"));
+
+        Product product = new Product();
+        product.setName(productDTO.getName());
+        product.setSeller(user);
+        product.setPrice(productDTO.getPrice());
         return productRepository.save(product);
     }
 
